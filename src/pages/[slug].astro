@@ -1,0 +1,31 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("docs");
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: post,
+  }));
+}
+
+type Props = CollectionEntry<"docs">;
+
+const post = Astro.props;
+const { Content } = await post.render();
+---
+
+<Layout title={`pridi-f | ${post.data.title}`}>
+  <section>
+    <div>
+      <h3><span class="font-medium">Name</span>: {post.data.title}</h3>
+      <h3>
+        <span class="font-medium">Page</span>: {post.data.page.join(" - ")}
+      </h3>
+    </div>
+  </section>
+  <section class="prose">
+    <Content />
+  </section>
+</Layout>

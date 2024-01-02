@@ -1,0 +1,28 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="m-4">
+    <nav class="border-b pb-4 font-medium text-lg">
+      <a href="/">pridi-f</a>
+    </nav>
+    <main class="my-4 grid gap-4">
+      <slot />
+    </main>
+  </body>
+</html>
+<style is:global></style>

@@ -1,0 +1,23 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+const posts = await getCollection("docs");
+---
+
+<Layout title="pridi-f main page">
+  <main>
+    <section class="prose">
+      <ul>
+        {
+          posts.map((x) => {
+            return (
+              <li>
+                <a href={x.slug}>{x.data.title}</a>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </section>
+  </main>
+</Layout>
